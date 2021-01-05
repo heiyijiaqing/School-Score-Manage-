@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+
+    <!--filter-->
+    <filter>
+        <filter-name>BackServletFilter</filter-name>
+        <filter-class>filter.BackServletFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>BackServletFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--servlet-->
+    <servlet>
+        <servlet-name>AcademyServlet</servlet-name>
+        <servlet-class>servlet.AcademyServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AcademyServlet</servlet-name>
+        <url-pattern>/academyServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MajorServlet</servlet-name>
+        <servlet-class>servlet.MajorServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MajorServlet</servlet-name>
+        <url-pattern>/majorServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ClassServlet</servlet-name>
+        <servlet-class>servlet.ClassServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ClassServlet</servlet-name>
+        <url-pattern>/classServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TeacherServlet</servlet-name>
+        <servlet-class>servlet.TeacherServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TeacherServlet</servlet-name>
+        <url-pattern>/teacherServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StudentServlet</servlet-name>
+        <servlet-class>servlet.StudentServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>StudentServlet</servlet-name>
+        <url-pattern>/studentServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CourseServlet</servlet-name>
+        <servlet-class>servlet.CourseServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>CourseServlet</servlet-name>
+        <url-pattern>/courseServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ScoreServlet</servlet-name>
+        <servlet-class>servlet.ScoreServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ScoreServlet</servlet-name>
+        <url-pattern>/scoreServlet</url-pattern>
+    </servlet-mapping>
+
+</web-app>
