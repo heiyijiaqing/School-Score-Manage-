@@ -93,4 +93,13 @@ public class StudentServlet extends BaseBackServlet {
 
         return "admin/listStudent.jsp";
     }
+
+    //student使用
+    public String editStudent(HttpServletRequest request, HttpServletResponse response, Page page) {
+//        int id = Integer.parseInt(request.getParameter("id"));
+        int id = (int)request.getSession().getAttribute("id");
+        Student c = studentDAO.get(id);
+        request.setAttribute("c", c);
+        return "student/editStudent.jsp";
+    }
 }

@@ -33,6 +33,25 @@ public class BackServletFilter implements Filter {
             String method = StringUtils.substringAfterLast(uri,"_" );
             request.setAttribute("method", method);
             req.getRequestDispatcher("/" + servletPath).forward(request, response);
+            System.out.println("admin过滤器");
+            return;
+        }
+
+        if(uri.startsWith("/student_")){
+            String servletPath = StringUtils.substringBetween(uri,"_", "_") + "Servlet";
+            String method = StringUtils.substringAfterLast(uri,"_" );
+            request.setAttribute("method", method);
+            req.getRequestDispatcher("/" + servletPath).forward(request, response);
+            System.out.println("student过滤器");
+            return;
+        }
+
+        if(uri.startsWith("/teacher_")){
+            String servletPath = StringUtils.substringBetween(uri,"_", "_") + "Servlet";
+            String method = StringUtils.substringAfterLast(uri,"_" );
+            request.setAttribute("method", method);
+            req.getRequestDispatcher("/" + servletPath).forward(request, response);
+            System.out.println("teacher过滤器");
             return;
         }
 

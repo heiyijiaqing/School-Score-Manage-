@@ -149,4 +149,43 @@ public class ScoreDAO {
         }
         return beans;
     }
+
+    public List<Score> list(int id, int start, int count) {
+        List<Score> beans = new ArrayList<Score>();
+
+        String sql = "select * from score where id = ? limit ?,? ";
+
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
+
+            ps.setInt(1, id);
+            ps.setInt(2, start);
+            ps.setInt(3, count);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Score bean = new Score();
+//                int id = rs.getInt(1);
+                int courseId = rs.getInt("courseId");
+                int studentId = rs.getInt("studentId");
+                int score = rs.getInt("score");
+
+                System.out.println("id="+id);
+                System.out.println("courseId="+courseId);
+                System.out.println("studentId="+studentId);
+                System.out.println("score="+score);
+
+                bean.setId(id);
+                bean.setCourseId(courseId);
+                bean.setStudentId(studentId);
+                bean.setScore(score);
+
+                beans.add(bean);
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return beans;
+    }
 }

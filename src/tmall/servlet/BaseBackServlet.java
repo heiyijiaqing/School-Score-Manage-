@@ -28,11 +28,15 @@ import util.Page;
 
 public abstract class BaseBackServlet extends HttpServlet {
 
+//    admin方法
     public abstract String add(HttpServletRequest request, HttpServletResponse response, Page page) ;
     public abstract String delete(HttpServletRequest request, HttpServletResponse response, Page page) ;
     public abstract String edit(HttpServletRequest request, HttpServletResponse response, Page page) ;
     public abstract String update(HttpServletRequest request, HttpServletResponse response, Page page) ;
     public abstract String list(HttpServletRequest request, HttpServletResponse response, Page page) ;
+
+//    student方法
+//    public abstract String list(int id, HttpServletRequest request, HttpServletResponse response, Page page) ;
 
     protected AcademyDAO academyDAO = new AcademyDAO();
     protected AdminDAO adminDAO = new AdminDAO();

@@ -197,19 +197,19 @@ public class StudentDAO {
         return bean;
     }
 
-    public Student get(String name, String password) {
+    public Student get(int id, String password) {
         Student bean = null;
 
-        String sql = "select * from student where name = ? and password=?";
+        String sql = "select * from student where id = ? and password=?";
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql)) {
-            ps.setString(1, name);
+            ps.setInt(1, id);
             ps.setString(2, password);
             ResultSet rs =ps.executeQuery();
 
             if (rs.next()) {
                 bean = new Student();
-                int id = rs.getInt("id");
-                bean.setName(name);
+//                int id = rs.getInt("id");
+//                bean.setName(id);
                 bean.setPassword(password);
                 bean.setId(id);
             }

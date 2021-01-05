@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Score;
 //import util.ImageUtil;
+import bean.Student;
 import util.Page;
 
 public class ScoreServlet extends BaseBackServlet {
@@ -85,5 +86,23 @@ public class ScoreServlet extends BaseBackServlet {
         request.setAttribute("page", page);
 
         return "admin/listScore.jsp";
+    }
+
+//    student
+    public String listStudent(HttpServletRequest request, HttpServletResponse response, Page page) {
+//        int id = Integer.parseInt(request.getParameter("id"));
+
+        int id = (int) request.getSession().getAttribute("id");
+
+        List<Score> cs = scoreDAO.list(id,page.getStart(),page.getCount());
+        int total = scoreDAO.getTotal();
+        page.setTotal(total);
+
+        request.setAttribute("thecs", cs);
+
+        request.setAttribute("page", page);
+
+        return "student/listScore.jsp";
+
     }
 }
