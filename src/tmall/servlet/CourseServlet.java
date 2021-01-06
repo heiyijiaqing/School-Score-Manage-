@@ -105,4 +105,21 @@ public class CourseServlet extends BaseBackServlet {
 
         return "admin/listCourse.jsp";
     }
+
+//    教师使用
+    public String listTeacher(HttpServletRequest request, HttpServletResponse response, Page page) {
+
+        int teacherId = (int) request.getSession().getAttribute("id");
+
+        List<Course> cs = courseDAO.listTeacher(teacherId,page.getStart(),page.getCount());
+        int total = courseDAO.getTotal();
+        page.setTotal(total);
+
+        request.setAttribute("thecs", cs);
+
+
+        request.setAttribute("page", page);
+
+        return "teacher/listCourse.jsp";
+    }
 }

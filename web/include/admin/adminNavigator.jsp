@@ -3,7 +3,7 @@
 
 <div class="navitagorDiv">
 	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
-		<img style="margin-left:10px;margin-right:0px" class="pull-left" src="img/site/tmallbuy.png" height="45px">
+		<%--<img style="margin-left:10px;margin-right:0px" class="pull-left" src="img/site/tmallbuy.png" height="45px">--%>
 		<a class="navbar-brand" href="#nowhere">管理员后台</a>
 		
 		<a class="navbar-brand" href="admin_academy_list">学院管理</a>

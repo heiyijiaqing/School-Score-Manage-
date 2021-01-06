@@ -88,13 +88,13 @@ public class ScoreServlet extends BaseBackServlet {
         return "admin/listScore.jsp";
     }
 
-//    student
+//    student使用
     public String listStudent(HttpServletRequest request, HttpServletResponse response, Page page) {
 //        int id = Integer.parseInt(request.getParameter("id"));
 
-        int id = (int) request.getSession().getAttribute("id");
+        int studentId = (int) request.getSession().getAttribute("id");
 
-        List<Score> cs = scoreDAO.list(id,page.getStart(),page.getCount());
+        List<Score> cs = scoreDAO.listStudent(studentId,page.getStart(),page.getCount());
         int total = scoreDAO.getTotal();
         page.setTotal(total);
 
@@ -103,6 +103,24 @@ public class ScoreServlet extends BaseBackServlet {
         request.setAttribute("page", page);
 
         return "student/listScore.jsp";
+
+    }
+
+//    teacher使用
+    public String listTeacher(HttpServletRequest request, HttpServletResponse response, Page page) {
+//        int id = Integer.parseInt(request.getParameter("id"));
+
+        int teacherId = (int) request.getSession().getAttribute("id");
+
+        List<Score> cs = scoreDAO.listTeacher(teacherId,page.getStart(),page.getCount());
+        int total = scoreDAO.getTotal();
+        page.setTotal(total);
+
+        request.setAttribute("thecs", cs);
+
+        request.setAttribute("page", page);
+
+        return "teacher/listScore.jsp";
 
     }
 }

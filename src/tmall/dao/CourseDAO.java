@@ -181,4 +181,49 @@ public class CourseDAO {
         }
         return beans;
     }
+
+//    教师使用
+    public List<Course> listTeacher(int teacherId, int start, int count) {
+        List<Course> beans = new ArrayList<Course>();
+
+        String sql = "select * from course WHERE teacherId=? order by id desc limit ?,? ";
+
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
+
+            ps.setInt(1, teacherId);
+            ps.setInt(2, start);
+            ps.setInt(3, count);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Course bean = new Course();
+                int id = rs.getInt(1);
+                int classId = rs.getInt("classId");
+//                int teacherId = rs.getInt("teacherId");
+                String name = rs.getString("name");
+                String year = rs.getString("year");
+                int term = rs.getInt("term");
+                int hour = rs.getInt("hour");
+                int type = rs.getInt("type");
+                int credit = rs.getInt("credit");
+
+                bean.setId(id);
+                bean.setClassId(classId);
+                bean.setTeacherId(teacherId);
+                bean.setName(name);
+                bean.setYear(year);
+                bean.setTerm(term);
+                bean.setHour(hour);
+                bean.setType(type);
+                bean.setCredit(credit);
+
+                beans.add(bean);
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return beans;
+    }
 }

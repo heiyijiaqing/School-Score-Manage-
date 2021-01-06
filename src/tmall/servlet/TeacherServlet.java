@@ -99,4 +99,43 @@ public class TeacherServlet extends BaseBackServlet {
 
         return "admin/listTeacher.jsp";
     }
+
+//    教师使用
+    public String editTeacher(HttpServletRequest request, HttpServletResponse response, Page page) {
+//        int id = Integer.parseInt(request.getParameter("id"));
+        int id = (int)request.getSession().getAttribute("id");
+        Teacher c = teacherDAO.get(id);
+        request.setAttribute("c", c);
+        return "teacher/editTeacher.jsp";
+    }
+
+    public String updateTeacher(HttpServletRequest request, HttpServletResponse response, Page page) {
+        Map<String,String> params = new HashMap<>();
+        InputStream is = super.parseUpload(request, params);
+
+        System.out.println(params);
+
+        int id = Integer.parseInt(params.get("id"));
+        int academyId = Integer.parseInt(params.get("academyId"));
+        String password= params.get("password");
+        String name= params.get("name");
+        int sex = Integer.parseInt(params.get("sex"));
+        int age = Integer.parseInt(params.get("age"));
+        String title= params.get("title");
+        String phone= params.get("phone");
+
+        Teacher c = new Teacher();
+        c.setId(id);
+        c.setAcademyId(academyId);
+        c.setPassword(password);
+        c.setName(name);
+        c.setSex(sex);
+        c.setAge(age);
+        c.setTitle(title);
+        c.setPhone(phone);
+        teacherDAO.update(c);
+
+        return "@teacher_teacher_editTeacher";
+
+    }
 }

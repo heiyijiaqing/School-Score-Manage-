@@ -33,11 +33,11 @@ $(function(){
 <div id="loginDiv" style="position: relative">
 
 	<div class="simpleLogo">
-		<a href="${contextPath}"><img src="img/site/simpleLogo.png"></a>
+		<a href="${contextPath}"><img src="img/site/simple.png"></a>
 	</div>
 
 	
-	<img id="loginBackgroundImg" class="loginBackgroundImg" src="img/site/loginBackground.png">
+	<img id="loginBackgroundImg" class="loginBackgroundImg" src="img/site/loginGround.png">
 	
 	<form class="loginForm" action="/forelogin" method="post">
 		<div id="loginSmallDiv" class="loginSmallDiv">
@@ -88,7 +88,7 @@ $(function(){
 				<%--<a href="register.jsp" class="pull-right">免费注册</a> --%>
 			</div>
 			<div style="margin-top:20px">
-				<button class="btn btn-block redButton" type="submit">登录</button>
+				<button class="btn btn-block btn-primary" type="submit">登录</button>
 			</div>
 		</div>	
 	</form>

@@ -150,14 +150,15 @@ public class ScoreDAO {
         return beans;
     }
 
-    public List<Score> list(int id, int start, int count) {
+//    student使用
+    public List<Score> listStudent(int studentId, int start, int count) {
         List<Score> beans = new ArrayList<Score>();
 
-        String sql = "select * from score where id = ? limit ?,? ";
+        String sql = "select * from score where studentId = ? limit ?,? ";
 
         try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
 
-            ps.setInt(1, id);
+            ps.setInt(1, studentId);
             ps.setInt(2, start);
             ps.setInt(3, count);
 
@@ -165,12 +166,53 @@ public class ScoreDAO {
 
             while (rs.next()) {
                 Score bean = new Score();
-//                int id = rs.getInt(1);
+                int id = rs.getInt(1);
+                int courseId = rs.getInt("courseId");
+//                int studentId = rs.getInt("studentId");
+                int score = rs.getInt("score");
+
+//                System.out.println("id="+id);
+                System.out.println("courseId="+courseId);
+                System.out.println("studentId="+studentId);
+                System.out.println("score="+score);
+
+                bean.setId(id);
+                bean.setCourseId(courseId);
+                bean.setStudentId(studentId);
+                bean.setScore(score);
+
+                beans.add(bean);
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return beans;
+    }
+
+//    teacher使用
+    public List<Score> listTeacher(int teacherId, int start, int count) {
+        List<Score> beans = new ArrayList<Score>();
+
+        String sql = "select * from score where courseId in (SELECT c.id cid FROM course c INNER JOIN teacher t ON c.teacherId = ?) limit ?,? ";
+//        "select * from score where courseId in (SELECT c.id cid FROM course c INNER JOIN teacher t ON c.teacherId = t.id)"
+
+        try (Connection c = DBUtil.getConnection(); PreparedStatement ps = c.prepareStatement(sql);) {
+
+            ps.setInt(1, teacherId);
+            ps.setInt(2, start);
+            ps.setInt(3, count);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Score bean = new Score();
+                int id = rs.getInt(1);
                 int courseId = rs.getInt("courseId");
                 int studentId = rs.getInt("studentId");
                 int score = rs.getInt("score");
 
-                System.out.println("id="+id);
+//                System.out.println("id="+id);
                 System.out.println("courseId="+courseId);
                 System.out.println("studentId="+studentId);
                 System.out.println("score="+score);

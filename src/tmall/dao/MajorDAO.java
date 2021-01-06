@@ -93,7 +93,9 @@ public class MajorDAO {
 
             if (rs.next()) {
                 bean = new Major();
-                String name = rs.getString(2);
+                int academyId = rs.getInt("academyId");
+                String name = rs.getString("name");
+                bean.setAcademyId(academyId);
                 bean.setName(name);
                 bean.setId(id);
             }

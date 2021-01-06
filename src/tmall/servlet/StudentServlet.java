@@ -102,4 +102,32 @@ public class StudentServlet extends BaseBackServlet {
         request.setAttribute("c", c);
         return "student/editStudent.jsp";
     }
+
+    public String updateStudent(HttpServletRequest request, HttpServletResponse response, Page page) {
+        Map<String,String> params = new HashMap<>();
+        InputStream is = super.parseUpload(request, params);
+
+        System.out.println(params);
+
+        int id = Integer.parseInt(params.get("id"));
+        int classId = Integer.parseInt(params.get("classId"));
+        String password= params.get("password");
+        String name= params.get("name");
+        int sex = Integer.parseInt(params.get("sex"));
+        int age = Integer.parseInt(params.get("age"));
+        String title= params.get("title");
+        String phone= params.get("phone");
+
+        Student c = new Student();
+        c.setId(id);
+        c.setClassId(classId);
+        c.setPassword(password);
+        c.setName(name);
+        c.setSex(sex);
+        c.setAge(age);
+        studentDAO.update(c);
+
+        return "@student_student_editStudent";
+
+    }
 }

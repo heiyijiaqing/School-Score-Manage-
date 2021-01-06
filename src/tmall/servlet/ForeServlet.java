@@ -24,7 +24,7 @@ public class ForeServlet extends BaseForeServlet {
         String password = request.getParameter("password");
         int type = Integer.parseInt(request.getParameter("type"));
 
-        //存储id
+        //存储用户登录id
 //        request.setAttribute("id",id);
         request.getSession().setAttribute("id",id);
 
@@ -45,7 +45,7 @@ public class ForeServlet extends BaseForeServlet {
                     return "login.jsp";
                 }
                 request.getSession().setAttribute("teacher", teacher);
-                return "@teacher_course_list";
+                return "@teacher_course_listTeacher?id="+id;
             }
             case 2: {
                 Admin admin = adminDAO.get(id, password);
